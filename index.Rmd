@@ -1,86 +1,89 @@
 ---
 title: "A3: SPL Library Checkouts"
+author: "Aaron He"
+date: "`r Sys.Date()`"
 output: html_document
 ---
+```{r setup, include=FALSE}
+library(knitr)
+library(ggplot2)
+library(dplyr)
+library(scales)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
+
+# source all R files
+source('summary.R')
+source('chart1.R')
+source('chart2.R')
+source('chart3.R')
+```
 
 ### Introduction
 
-An introduction of the data and a description of the trends/books/items you are choosing to analyze (and why!)
+In this report, the data: MaterialType, Checkouts, and CheckoutType, in the dataset would be analyzed. My purpose is to examine the degree of popularity in each material type, the popularity among all checkout types, and the difference of checkouts between book and ebook material types based on the avaliable data. Therefore, I chose the data, Dataset with items checked out at least 10 times a month from 2017-20203, provided by Seattle Public library, which is what I want to analyze.
+
 
 ### Summary Information
 
-Write a summary paragraph of findings that includes the 5 values calculated from your summary information R script
-
-These will likely be calculated using your DPLYR skills, answering questions such as:
-
-- What is the average number of checkouts for each item?
-- What is the month or year with the most/least checkouts for a book that you're interested in?
-- What is the month or year with the most/least checkouts for ebooks?
-- How has the number of print book checkouts changed over time?
-
-Feel free to calculate and report values that you find relevant.
+According to the data, Dataset with items checked out at least 10 times a month from 2017-20203, provided by Seattle Public library. I found that this dataset contains `r summary_num_row` different observations, and `r summary_num_column` features or factors we analyze. Moreover, there are `r uniq_M_type` different material types, and ebook type only contains `r sum_ebook`. Besides, the average number of checkouts are `r avg_ck_num`.
 
 ### The Dataset
 
-- Who collected/published the data?  
-- What are the parameters of the data (dates, number of checkouts, kinds of books, etc.)?
-- How was the data collected or generated?  
-- Why was the data collected?  
-- What, if any, ethical questions do you need to consider when working with this data?  
-- What are possible limitations or problems with this data?   (at least 200 words)
+> **Who collected/published the data?**  
 
+The data was published by Seattle Public Library.
+
+> **What are the parameters of the data (dates, number of checkouts, kinds of books, etc.)?**
+
+The parameters of the data include the way of usage, the website of checkout, the checkout type of book, date of checkout, the number of checkout, the title of book, the creator of book, the subject of book, the publisher of book, and the publish year of book.
+
+> **How was the data collected or generated?** 
+
+Checkout data comes from multiple current and historical sources. For digital items, the media vendors: Overdrive, hoopla, Freegal, and RBDigital provide usage data.For historical physical item checkouts from April 2005 to September 30, 2016, the source of this data is the Legrady artwork data archives. For October 1 2016 to present, the source is the Horizon ILS.
+
+> **Why was the data collected?**
+
+This collected data can help Seattle Public Library better understand how its collection is being used and to inform decision-making around collection development, programming, and outreach. Also, this data can encourage analysis and exploration by researchers, analysts, and members of the public.
+
+> **What, if any, ethical questions do you need to consider when working with this data?** 
+
+When working with this data, it is essential to consider the privacy and confidentiality of library users. Even though dataset does not include any personally identifiable information, it does contain information on the titles that individuals have checked out.Therefore, researchers or analysts should care about not to draw conclusions about individuals or groups based on this data.
+
+> **What are possible limitations or problems with this data?   (at least 200 words)**
+
+First of all, there is one potential constraint of this dataset is that it solely captures the usage of items that are present in the Seattle Public Library's inventory so that it might not reflect the reading or viewing behavior of the general population in Seattle. Moreover, the dataset does not comprise any data on online or digital materials and only covers the checkouts material type made from the physical library sites. Consequently, the results based on the dataset could not be comprehensive for each material type. Besides, the dataset contains the results from 2017-2023, which also means that results of the material type, checkout type are also from 2017-2023. Therefore, the different results may come from the same person because of the change in their minds to the two kinds of types. As a result, we can not completely get the reasonable conclusion based on this dataset because we can not know each person's choice in the material type and checkout type. Lastly, we can't check these data, so we can't know if they are convincing.
 
 ### First Trends Over Time Chart
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
+The chart was included to visually represent the popularity of different material types in the dataset. It provides a convenient and obvious way to understand the distribution of checkouts across different material types and identify any notable patterns or trends.
 
-The first chart that you will create and include will show the trend over time of your variable/topic/interest. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
+According to the chart, we can find out that the most popular material type is "BOOK," followed by "EBOOK," "AUDIOBOOK," and "DVD." These four material types make up the vast majority of checkouts in the dataset, while the other material types have much lower checkouts relatively.
 
-- Show more than one, but fewer than ~10 trends
-  - For example, two books, or 5 different mediums
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear - legend title
-In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
 
-When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.
+Overall, the chart provides a useful summary of the popularity of different material types in the dataset and highlights some interesting patterns in the data.
 
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, warning = FALSE, code = readLines("chart1_example.R")}
+```{r, echo = FALSE, warning = FALSE}
+plot
 ```
 
 ### Second Trends Over Time Chart
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
+The chart was created to visually display the degree of popularity among checkout types in the dataset. By grouping the data by "CheckoutType" and counting the number of occurrences of each type, we can get a sense of which checkout types are more commonly used and which are less commonly used.
 
-The second chart that you will create and include will show another trend over time of your variable/topic/interest. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
+Looking at the histogram, we can see that the "Horizon" checkout type is by far the most popular, with over 400K checkouts. "OverDrive" checkouts are the second most popular type, with just over 300K checkouts. "Freegal" are the least popular types.
 
-- Show more than one, but fewer than ~10 trends
-  - For example, two books, or 5 different mediums
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear - legend title
-In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
-
-When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.
-
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, code = readLines("chart2_example.R")}
+```{r, echo = FALSE, message = FALSE}
+plot_1
 ```
 
-### Your Choice
+### Third Trends Over Time Chart
 
-The last chart is up to you. It could be a line plot, scatter plot, histogram, bar plot, stacked bar plot, and more. Here are some requirements to help guide your design:
+The chart was included to compare the checkouts/popularity of two different material types - books and ebooks - in the dataset. By filtering the data to only include rows where the "MaterialType" is either "BOOK" or "EBOOK", we can get a sense of the difference in popularity between these two types of materials.
 
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear legend title
+Looking at the scatter plot, we can see that books are still more popular than ebooks in terms of the total number of checkouts. However, the difference in popularity between these two types of materials is not as significant as the difference in popularity between different checkout types that we saw in the previous chart. This suggests that both physical and digital materials are important to library patrons, and libraries may need to allocate resources to both types of collections.
 
-Here's an example of how to run an R script inside an RMarkdown file:
+The pattern that emerges from this chart is that books are still more popular than ebooks, but ebooks still account for a significant portion of the total checkouts for these two material types. This suggests that libraries should consider investing in both physical and digital collections to meet the needs and preferences of their patrons.
 
-``````{r, echo = FALSE, code = readLines("chart2_example.R")}
+```{r, echo = FALSE, message = FALSE}
+plot_2
 ```
-
-
