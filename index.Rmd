@@ -20,7 +20,7 @@ source('chart3.R')
 
 ### Introduction
 
-In this report, the data: MaterialType, Checkouts, and CheckoutType, in the dataset would be analyzed. My purpose is to examine the degree of popularity in each material type, the popularity among all checkout types, and the difference of checkouts between book and ebook material types based on the avaliable data. Therefore, I chose the data, Dataset with items checked out at least 10 times a month from 2017-20203, provided by Seattle Public library, which is what I want to analyze.
+In this report, the data: MaterialType, Checkouts, and CheckoutType, in the dataset would be analyzed. My purpose is to examine the degree of popularity in three material types, the popularity among all checkout types, and the difference of checkouts between book and ebook material types based on the avaliable data. Therefore, I chose the data, Dataset with items checked out at least 10 times a month from 2017-20203, provided by Seattle Public library, which is what I want to analyze.
 
 
 ### Summary Information
@@ -55,12 +55,12 @@ First of all, there is one potential constraint of this dataset is that it solel
 
 ### First Trends Over Time Chart
 
-The chart was included to visually represent the popularity of different material types in the dataset. It provides a convenient and obvious way to understand the distribution of checkouts across different material types and identify any notable patterns or trends.
+The chart was included to visually represent the popularity of three material types in the dataset. It provides a convenient and obvious way to understand the distribution of checkouts across three material types and identify any notable patterns or trends.
 
-According to the chart, we can find out that the most popular material type is "BOOK," followed by "EBOOK," "AUDIOBOOK," and "DVD." These four material types make up the vast majority of checkouts in the dataset, while the other material types have much lower checkouts relatively.
+According to the chart, we can find out that the most popular material type is "BOOK," followed by "MAGAZINE," and "MOVIE." These three material types make up the their own checkouts in the dataset.
 
 
-Overall, the chart provides a useful summary of the popularity of different material types in the dataset and highlights some interesting patterns in the data.
+Overall, the chart provides a useful summary of the popularity of three material types in the dataset and highlights some interesting patterns in the data.
 
 ```{r, echo = FALSE, warning = FALSE}
 plot
