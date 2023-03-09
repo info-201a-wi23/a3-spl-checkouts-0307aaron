@@ -1,13 +1,15 @@
 dataset <- read.csv("A3 Dataset.csv", stringsAsFactors = FALSE)
 
-C1 <- dataset %>% filter(MaterialType == "EBOOK" | MaterialType == "MOVIE" | MaterialType == "MAGAZINE")  %>% group_by(MaterialType) %>% count()
+dataset<- dataset %>% mutate(Date = paste0(CheckoutYear, "-", CheckoutMonth, "-01"))
 
-plot <- ggplot(C1, aes(x="", y=n, fill=MaterialType)) +
-  geom_bar(width=1, stat="identity") +
-  coord_polar("y", start=0) +
-  theme_void() +
-  theme(legend.position = "right") +
-  labs(title = "Degree of Popularity Among Material Types", x = "Material Types", y = "Sum of Each Type", fill = "Material Types")
+dataset$Date <- as.Date(dataset$Date, format = "%Y-%m-%d")
+
+C1 <- dataset %>% filter(MaterialType %in% c("EBOOK","MOVIE", "MAGAZINE"))  %>% filter(Date >= as.Date("2019-01-01") & Date<= as.Date("2019-6-30")) %>% group_by(Date) %>% summarize(sum_materialtype = n())
 
 
+plot <- ggplot(C1, aes(x = Date, y = sum_materialtype, color = sum_materialtype))+
+  geom_line() +
+  theme_classic() +
+  scale_x_date(date_breaks = "1 month", date_labels = "%Y-%m") +
+  labs(title = "Degree of Popularity Among three Material Types", x = "Date", y = "Sum of Three Material Types")
 
